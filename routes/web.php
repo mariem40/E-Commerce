@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/ad', 'AdminController@index')->name('ad');
+//Route::get('/ad', 'AdminController@index')->name('ad');
 Route::resource('products', 'ProductController');
 Route::delete('products/force/{id}', 'ProductController@forceDestroy')->name('products.force.destroy');
 Route::put('products/restore/{id}', 'ProductController@restore')->name('products.restore');
@@ -41,7 +41,7 @@ Route::get('/search','CategorieController@search');
 //Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
-Route::get('/home', 'HomeController@admin')->middleware('admin');
+Route::get('/home', 'AdminController@index')->name('home');
 //Route::get('/deconnexion',function(){
 	//Auth::logout();
 	//return redirect('/login');
@@ -50,7 +50,7 @@ Auth::routes(['verify'=>true]);
 Route::get('protege',function(){
 	return'affichage de la route protégé';
 })->middleware('verified');
-//Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'AdminController@index')->name('home');
 Route::resource('marques', 'MarqueController');
 Route::delete('marques/force/{marque}', 'MarqueController@forceDestroy')->name('marques.force.destroy');
 //Route::put('marques/restore/{marque}', 'MarqueController@restore')->name('marques.restore');
